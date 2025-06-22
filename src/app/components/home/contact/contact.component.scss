@@ -1,0 +1,142 @@
+section {
+  .content {
+    .content-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      @media (max-width:768px) {
+        gap: 0px;
+      }
+
+      @media (min-width: 991px) {
+        gap: 75px;
+        flex-direction: row-reverse;
+        align-items: start;
+      }
+
+      .top {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .title {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .information {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
+          .row {
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            gap: 16px;
+
+            i {
+              font-size: 20px;
+              // font-weight: 700;
+            }
+          }
+        }
+
+        .maps {
+          h2 {
+            margin-bottom: 15px;
+          }
+
+          .as {
+            display: flex;
+            gap: 20px;
+          }
+
+          .pi {
+            color: var(--primary);
+            font-size: 30px;
+          }
+        }
+
+        .text {
+          text-align: start;
+        }
+      }
+
+      .form {
+        width: 100%;
+        padding: 20px 0;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 26px;
+
+          .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+
+            .form-field {
+              position: relative;
+
+              .form-error {
+                color: #d60000;
+                font-size: 12px;
+                position: absolute;
+                top: 58px;
+              }
+
+              input,
+              textarea {
+                font-size: 16px;
+                font-family: "Poppins Regular";
+                width: 100%;
+                border: 0;
+                font-weight: normal;
+                padding: 10px;
+                height: 56px;
+                outline: none;
+                border-radius: 5px;
+                background: transparent;
+                border: 1px solid var(--primary);
+                width: 100%;
+                line-height: 177.5%;
+              }
+
+              textarea {
+                padding: 10px;
+                resize: none;
+                height: 144px;
+                line-height: 32px;
+              }
+            }
+          }
+
+          .button {
+            .btn-secondary{
+              width: 100%;
+            }
+            .error-captcha {
+              color: #d60000;
+              font-size: 12px;
+              position: absolute;
+              top: 59px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.confirm-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}

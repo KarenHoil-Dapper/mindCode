@@ -1,0 +1,27 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { lastValueFrom } from 'rxjs';
+import { DefaultResponse } from '../../models/http.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ContactService {
+
+  public CONTACT_URI: string = `${environment.URL_API}/mails/send-mail`;
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  async sendContact(mailData: any) {
+    try {
+      let response = await lastValueFrom(this.http.post<DefaultResponse>(this.CONTACT_URI, { mailData, }));
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw error
+    }
+  }
+}

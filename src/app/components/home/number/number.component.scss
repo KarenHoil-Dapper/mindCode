@@ -1,0 +1,44 @@
+section{
+  .content{
+    text-align: center;
+
+    .numbers{
+      display: grid;
+      grid-template-columns: repeat(3, 300px);
+      justify-content: space-between;
+      margin-top: 40px;
+
+      @media(max-width: 991px){
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+      }
+      @media(max-width: 768px){
+        flex-direction: column;
+      }
+
+      .number{
+        .count{
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          justify-content: center;
+          .icon {
+            display: flex;
+            align-items: end;
+            height: 70px;
+            &.place {
+              padding-right: 5px;
+              padding-bottom: 14px;
+            }
+          }
+          h2{
+            font-size: 40px;
+            color: var(--primary);
+            font-family: 'Poppins Medium';
+          }
+        }
+      }
+    }
+  }
+}

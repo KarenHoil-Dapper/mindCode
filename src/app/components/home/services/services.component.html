@@ -1,0 +1,26 @@
+<section class="m-section">
+  <div class="container">
+    <div class="content">
+      <h2 class="title-section " data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">NUESTROS CURSOS</h2>
+      <p class="text" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">Te ofrecemos una selección de cursos en línea diseñados para que desarrolles habilidades prácticas en programación, sin importar tu nivel de experiencia.</p>
+      <div class="arrows" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+        <p-button id="arrow" icon="pi pi-arrow-left" (click)="swiper2!.swiperRef.slidePrev()" [rounded]="true" [text]="true"
+          [raised]="true" severity="help"></p-button>
+        <p-button id="arrow" icon="pi pi-arrow-right" (click)="swiper2!.swiperRef.slideNext()" [rounded]="true" [text]="true"
+          [raised]="true" severity="help"></p-button>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+      <swiper class="mySwiper" #swiper2 [config]="swiperConfig2" (slideChange)="onSlideChange()" [centeredSlides]="true">
+        <ng-template swiperSlide *ngFor="let service of services; let i = index">
+          <div class="image-container" [routerLink]="service.route">
+            <img class="image" [src]="service.img" alt="Empty Display" />
+            <div class="background-text">
+              <p class="text">{{ service.title }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+<section class="m-section">
+  <div class="container">
+    <div class="content">
+      <h2 class="title-section" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">CONTÁCTANOS</h2>
+      <div class="content-contact">
+        <div class="top" data-aos="fade-left" data-aos-delay="100" data-aos-duration="1000">
+          <div class="information">
+            <p class="text">Envíanos un mensaje y a la brevedad nos comunicaremos contigo</p>
+            <h2>Información de contacto</h2>
+            <div class="row">
+              <i class="pi pi-phone" style="color:#5E27EF"></i>
+              <a href="tel:+529984132097" class="text">+52 998 413 2097</a>
+            </div>
+            <div class="row">
+              <i class="pi pi-envelope" style="color:#5E27EF"></i>
+              <a href="mailto:'22393143@utcancun.edu.mx" class="text">{{ '22393143@utcancun.edu.mx' }}</a>
+            </div>
+            <!-- <div class="row">
+              <i class="pi pi-map-marker" style="color:#5E27EF"></i>
+              <a href="https://www.google.com/maps/place/Le%C3%B3n+de+los+Aldama,+Gto./@21.135242,-101.674004,11z/data=!4m6!3m5!1s0x842bbeffd6e6e721:0x606d95ec61a54327!8m2!3d21.1250077!4d-101.6859605!16zL20vMDFmc3J3?hl=es&entry=ttu&g_ep=EgoyMDI1MDMwMi4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank" class="text">León Gto</a>
+            </div> -->
+          </div>
+          <div class="maps">
+            <h2>Redes sociales</h2>
+            <div class="as">
+              <a href="https://www.facebook.com/UTdeCancun/" target="_blank">
+                <i class="pi pi-facebook" style="color: var(--primary);"></i>
+              </a>
+              <a href="https://www.instagram.com/utcancun/?hl=en" target="_blank">
+                <i class="pi pi-instagram" style="color: var(--primary);"></i>
+              </a>
+              <a href="https://x.com/utcancun?lang=en" target="_blank">
+                <i class="pi pi-twitter" style="color: var(--primary);"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="form" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+          <form [formGroup]="contactForm" (ngSubmit)="formValidation()">
+            <div class="inputs">
+              <div class="form-field"
+                [ngClass]="{'margin-error' : (contactForm.get('name')?.errors && contactForm.get('name')?.touched) || (invalid && contactForm.get('name')?.untouched)}">
+                <input type="text" placeholder="Nombre" required (click)="resetValidations()" formControlName="name" />
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('name')?.errors && contactForm.get('name')?.touched) || (invalid && contactForm.get('name')?.untouched)">
+                  {{errorMessage('name')}}
+                </p>
+              </div>
+              <div class="form-field"
+                [ngClass]="{'margin-error' : (contactForm.get('phone')?.errors && contactForm.get('phone')?.touched) || (invalid && contactForm.get('phone')?.untouched)}">
+                <div>
+                  <input type="text" placeholder="Teléfono" required (click)="resetValidations()"
+                    formControlName="phone" minlength="10" maxlength="10" oninput="(value=value.replace(/\D+/g, ''))" />
+                </div>
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('phone')?.errors && contactForm.get('phone')?.touched) || (invalid && contactForm.get('phone')?.untouched)">
+                  {{errorMessage('phone')}}
+                </p>
+              </div>
+              <div class="form-field"
+                [ngClass]="{'margin-error' : (contactForm.get('email')?.errors && contactForm.get('email')?.touched) || (invalid && contactForm.get('email')?.untouched)}">
+                <input type="text" placeholder="Email" required (click)="resetValidations()" formControlName="email" />
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched) || (invalid && contactForm.get('email')?.untouched)">
+                  * Requerido
+                </p>
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="contactForm.get('email')?.hasError('pattern') && contactForm.get('email')?.touched">
+                  {{errorMessage('email')}}
+                </p>
+              </div>
+              <div class="form-field">
+                <textarea placeholder="Mensaje" formControlName="message"></textarea>
+              </div>
+            </div>
+            <div class="button">
+              <button pButton pRipple class="btn-secondary" [loading]="isLoading">Contáctanos</button>
+              <p class="error-captcha" [@enterAnimation] *ngIf="invalidCaptcha">{{this.invalidCaptcha}}</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p-dialog header="¡Gracias por contactarnos!" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }"
+  [draggable]="false" [resizable]="false">
+  <div class="confirm-contact">
+    <p>Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible</p>
+    <img src="/assets/images/icon/avion-de-papel.png" alt="" style="width: 50px;">
+  </div>
+</p-dialog>
