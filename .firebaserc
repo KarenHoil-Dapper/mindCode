@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "mindcode-c9f16"
-  }
+  },
+  "targets": {
+    "mindcode-c9f16": {
+      "hosting": {
+        "mind-code-landing": [
+          "mind-code-landing"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
