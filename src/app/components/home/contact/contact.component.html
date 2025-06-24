@@ -70,6 +70,17 @@
                   {{errorMessage('email')}}
                 </p>
               </div>
+              <div class="form-field"
+              [ngClass]="{'margin-error' : (contactForm.get('courses')?.errors && contactForm.get('courses')?.touched) || (invalid && contactForm.get('courses')?.untouched)}">
+                <p-dropdown
+    [options]="courses"
+    optionLabel="name"
+    placeholder="Selecciona un curso" />
+    <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('courses')?.hasError('required') && contactForm.get('courses')?.touched) || (invalid && contactForm.get('courses')?.untouched)">
+                  * Requerido
+                </p>
+              </div>
               <div class="form-field">
                 <textarea placeholder="Mensaje" formControlName="message"></textarea>
               </div>

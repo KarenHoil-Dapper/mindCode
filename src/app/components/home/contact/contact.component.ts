@@ -32,6 +32,26 @@ export class ContactComponent {
   public invalidFlag: string = '';
   public invalidCaptcha: string = '';
   public visible: boolean = false;
+  public courses: any[] = [
+    {
+      name: 'Introducción a la Programación'
+    },
+    {
+      name: 'Desarrollo web con Angular'
+    },
+    {
+      name: 'JavaScript Avanzado'
+    },
+    {
+      name: 'Backend con Node.js y Express'
+    },
+    {
+      name: 'Bases de Datos con MySQL y MongoDB'
+    },
+    {
+      name:  'Desarrollo de Aplicaciones Móviles con Flutter'
+    },
+  ]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,6 +62,7 @@ export class ContactComponent {
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
       phone: ['', Validators.required],
+      courses: ['', Validators.required],
       email: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
       message: [''],
     });
