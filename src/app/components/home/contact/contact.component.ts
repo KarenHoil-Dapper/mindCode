@@ -4,6 +4,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { ToastService } from '../../../services/toast/toast.service';
 import { ContactService } from '../../../services/contact/contact.service';
+import { CoursesService } from '../../../services/courses/courses.service';
+import { response } from 'express';
+import { Course } from '../../../models/course.model';
 
 @Component({
   selector: 'app-contact',
@@ -32,12 +35,14 @@ export class ContactComponent {
   public invalidFlag: string = '';
   public invalidCaptcha: string = '';
   public visible: boolean = false;
+  public courses: Course[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastService: ToastService,
     private recaptchaV3Service: ReCaptchaV3Service,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private coursesService: CoursesService
   ) {
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -45,6 +50,10 @@ export class ContactComponent {
       email: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
       message: [''],
     });
+  }
+
+  ngOnInit() {
+    this.getCourses();
   }
 
   formValidation() {
@@ -84,6 +93,19 @@ export class ContactComponent {
       } else {
         return `Inválido`;
       }
+    }
+  }
+
+  async getCourses(){
+    try{
+      let response = await this.coursesService.getCourses();
+      this.courses = response;
+      console.log(this.courses);
+      return response;
+    }catch(error: any) {
+      this.toastService.showError('Ha ocurrido un error inesperado al cargar los cursos');
+      console.log(error);
+      throw error;
     }
   }
 
