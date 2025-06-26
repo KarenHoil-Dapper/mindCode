@@ -41,7 +41,8 @@
             <div class="inputs">
               <div class="form-field"
                 [ngClass]="{'margin-error' : (contactForm.get('nombre_completo')?.errors && contactForm.get('nombre_completo')?.touched) || (invalid && contactForm.get('nombre_completo')?.untouched)}">
-                <input type="text" placeholder="Nombre" required (click)="resetValidations()" formControlName="nombre_completo" />
+                <input type="text" placeholder="Nombre" required (click)="resetValidations()"
+                  formControlName="nombre_completo" />
                 <p class="form-error" [@enterAnimation]
                   *ngIf="(contactForm.get('nombre_completo')?.errors && contactForm.get('nombre_completo')?.touched) || (invalid && contactForm.get('nombre_completo')?.untouched)">
                   {{errorMessage('nombre_completo')}}
@@ -51,7 +52,8 @@
                 [ngClass]="{'margin-error' : (contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)}">
                 <div>
                   <input type="text" placeholder="Teléfono" required (click)="resetValidations()"
-                    formControlName="telefono" minlength="10" maxlength="10" oninput="(value=value.replace(/\D+/g, ''))" />
+                    formControlName="telefono" minlength="10" maxlength="10"
+                    oninput="(value=value.replace(/\D+/g, ''))" />
                 </div>
                 <p class="form-error" [@enterAnimation]
                   *ngIf="(contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)">
@@ -60,7 +62,8 @@
               </div>
               <div class="form-field"
                 [ngClass]="{'margin-error' : (contactForm.get('correo')?.errors && contactForm.get('correo')?.touched) || (invalid && contactForm.get('correo')?.untouched)}">
-                <input type="text" placeholder="correo" required (click)="resetValidations()" formControlName="correo" />
+                <input type="text" placeholder="correo" required (click)="resetValidations()"
+                  formControlName="correo" />
                 <p class="form-error" [@enterAnimation]
                   *ngIf="(contactForm.get('correo')?.hasError('required') && contactForm.get('correo')?.touched) || (invalid && contactForm.get('correo')?.untouched)">
                   * Requerido
@@ -71,19 +74,24 @@
                 </p>
               </div>
               <div class="form-field"
-              [ngClass]="{'margin-error' : (contactForm.get('nombre')?.errors && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)}">
-                <p-dropdown
-    [options]="courses"
-    optionLabel="nombre"
-    placeholder="Selecciona un curso"
-    [(ngModel)]="courseSelected"/>
-    <p class="form-error" [@enterAnimation]
+                [ngClass]="{'margin-error' : (contactForm.get('nombre')?.errors && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)}">
+                <p-dropdown [options]="courses" optionLabel="nombre" placeholder="Selecciona un curso"
+                  [(ngModel)]="courseSelected" />
+                <p class="form-error" [@enterAnimation]
                   *ngIf="(contactForm.get('nombre')?.hasError('required') && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)">
                   * Requerido
                 </p>
               </div>
               <div class="form-field">
                 <textarea placeholder="mensaje" formControlName="mensaje"></textarea>
+              </div>
+              <div class="form-field"
+                [ngClass]="{'margin-error' : (contactForm.get('terminos_aceptados')?.errors && contactForm.get('terminos_aceptados')?.touched) || (invalid && contactForm.get('terminos_aceptados')?.untouched)}">
+                <p-checkbox formControlName="terminos_aceptados" [binary]="true" inputId="binary" /> <label for="binary" class="ml-2">Acepta los <a routerLink="/terminos" style="color: var(--primary);">Terminos y condiciones</a></label>
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('terminos_aceptados')?.hasError('required') && contactForm.get('terminos_aceptados')?.touched) || (invalid && contactForm.get('terminos_aceptados')?.untouched)">
+                  * Requerido
+                </p>
               </div>
             </div>
             <div class="button">

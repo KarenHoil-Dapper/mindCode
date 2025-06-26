@@ -51,6 +51,7 @@ export class ContactComponent {
       telefono: ['', Validators.required],
       Cursos_id: [''],
       correo: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
+      terminos_aceptados: [false, Validators.requiredTrue],
       mensaje: [''],
     });
   }
@@ -66,6 +67,10 @@ export class ContactComponent {
     }
     if (this.contactForm.controls['telefono'].errors) {
       this.invalidFlag = 'invalid-phone';
+      this.invalid = true;
+    }
+    if (this.contactForm.controls['terminos_aceptados'].errors) {
+      this.invalidFlag = 'invalid-terms';
       this.invalid = true;
     }
     if (this.contactForm.controls['correo'].errors) {
@@ -127,7 +132,7 @@ export class ContactComponent {
         try {
           console.log('Enviando formulario de contacto', formValue);
           formValue.Cursos_id = this.courseSelected.id;
-          let response = await this.contactService.sendContact(formValue);
+          // let response = await this.contactService.sendContact(formValue);
           this.visible = true;
           this.contactForm.reset();
           this.isLoading = false;
