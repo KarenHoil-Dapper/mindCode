@@ -40,38 +40,50 @@
           <form [formGroup]="contactForm" (ngSubmit)="formValidation()">
             <div class="inputs">
               <div class="form-field"
-                [ngClass]="{'margin-error' : (contactForm.get('name')?.errors && contactForm.get('name')?.touched) || (invalid && contactForm.get('name')?.untouched)}">
-                <input type="text" placeholder="Nombre" required (click)="resetValidations()" formControlName="name" />
+                [ngClass]="{'margin-error' : (contactForm.get('nombre_completo')?.errors && contactForm.get('nombre_completo')?.touched) || (invalid && contactForm.get('nombre_completo')?.untouched)}">
+                <input type="text" placeholder="Nombre" required (click)="resetValidations()" formControlName="nombre_completo" />
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="(contactForm.get('name')?.errors && contactForm.get('name')?.touched) || (invalid && contactForm.get('name')?.untouched)">
-                  {{errorMessage('name')}}
+                  *ngIf="(contactForm.get('nombre_completo')?.errors && contactForm.get('nombre_completo')?.touched) || (invalid && contactForm.get('nombre_completo')?.untouched)">
+                  {{errorMessage('nombre_completo')}}
                 </p>
               </div>
               <div class="form-field"
-                [ngClass]="{'margin-error' : (contactForm.get('phone')?.errors && contactForm.get('phone')?.touched) || (invalid && contactForm.get('phone')?.untouched)}">
+                [ngClass]="{'margin-error' : (contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)}">
                 <div>
                   <input type="text" placeholder="Teléfono" required (click)="resetValidations()"
-                    formControlName="phone" minlength="10" maxlength="10" oninput="(value=value.replace(/\D+/g, ''))" />
+                    formControlName="telefono" minlength="10" maxlength="10" oninput="(value=value.replace(/\D+/g, ''))" />
                 </div>
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="(contactForm.get('phone')?.errors && contactForm.get('phone')?.touched) || (invalid && contactForm.get('phone')?.untouched)">
-                  {{errorMessage('phone')}}
+                  *ngIf="(contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)">
+                  {{errorMessage('telefono')}}
                 </p>
               </div>
               <div class="form-field"
-                [ngClass]="{'margin-error' : (contactForm.get('email')?.errors && contactForm.get('email')?.touched) || (invalid && contactForm.get('email')?.untouched)}">
-                <input type="text" placeholder="Email" required (click)="resetValidations()" formControlName="email" />
+                [ngClass]="{'margin-error' : (contactForm.get('correo')?.errors && contactForm.get('correo')?.touched) || (invalid && contactForm.get('correo')?.untouched)}">
+                <input type="text" placeholder="correo" required (click)="resetValidations()" formControlName="correo" />
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="(contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched) || (invalid && contactForm.get('email')?.untouched)">
+                  *ngIf="(contactForm.get('correo')?.hasError('required') && contactForm.get('correo')?.touched) || (invalid && contactForm.get('correo')?.untouched)">
                   * Requerido
                 </p>
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="contactForm.get('email')?.hasError('pattern') && contactForm.get('email')?.touched">
-                  {{errorMessage('email')}}
+                  *ngIf="contactForm.get('correo')?.hasError('pattern') && contactForm.get('correo')?.touched">
+                  {{errorMessage('correo')}}
+                </p>
+              </div>
+              <div class="form-field"
+              [ngClass]="{'margin-error' : (contactForm.get('nombre')?.errors && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)}">
+                <p-dropdown
+    [options]="courses"
+    optionLabel="nombre"
+    placeholder="Selecciona un curso"
+    [(ngModel)]="courseSelected"/>
+    <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('nombre')?.hasError('required') && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)">
+                  * Requerido
                 </p>
               </div>
               <div class="form-field">
-                <textarea placeholder="Mensaje" formControlName="message"></textarea>
+                <textarea placeholder="mensaje" formControlName="mensaje"></textarea>
               </div>
             </div>
             <div class="button">

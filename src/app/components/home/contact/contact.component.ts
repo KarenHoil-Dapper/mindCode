@@ -35,7 +35,9 @@ export class ContactComponent {
   public invalidFlag: string = '';
   public invalidCaptcha: string = '';
   public visible: boolean = false;
-  public courses: Course[] = [];
+  public courses: any;
+  public courseSelected:any;
+  public courseId:string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,27 +47,28 @@ export class ContactComponent {
     private coursesService: CoursesService
   ) {
     this.contactForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
-      message: [''],
+      nombre_completo: ['', Validators.required],
+      telefono: ['', Validators.required],
+      Cursos_id: [''],
+      correo: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
+      mensaje: [''],
     });
   }
 
-  ngOnInit() {
-    this.getCourses();
+  async ngOnInit() {
+    await this.getCourses();
   }
 
   formValidation() {
-    if (this.contactForm.controls['name'].errors) {
+    if (this.contactForm.controls['nombre_completo'].errors) {
       this.invalidFlag = 'invalid-name';
       this.invalid = true;
     }
-    if (this.contactForm.controls['phone'].errors) {
+    if (this.contactForm.controls['telefono'].errors) {
       this.invalidFlag = 'invalid-phone';
       this.invalid = true;
     }
-    if (this.contactForm.controls['email'].errors) {
+    if (this.contactForm.controls['correo'].errors) {
       this.invalidFlag = 'invalid-email';
       this.invalid = true;
     }
@@ -100,7 +103,8 @@ export class ContactComponent {
     try{
       let response = await this.coursesService.getCourses();
       this.courses = response;
-      console.log(this.courses);
+      this.courseSelected = this.courses.find((space: any) => space.id);
+      console.log(response);
       return response;
     }catch(error: any) {
       this.toastService.showError('Ha ocurrido un error inesperado al cargar los cursos');
@@ -108,6 +112,10 @@ export class ContactComponent {
       throw error;
     }
   }
+  onSelectCourse(event: any) {
+    console.log(event);
+  }
+
 
   async submit(formValue: any) {
     this.isLoading = true;
@@ -117,6 +125,8 @@ export class ContactComponent {
         formValue.token = token;
         this.isLoading = true;
         try {
+          console.log('Enviando formulario de contacto', formValue);
+          formValue.Cursos_id = this.courseSelected.id;
           let response = await this.contactService.sendContact(formValue);
           this.visible = true;
           this.contactForm.reset();

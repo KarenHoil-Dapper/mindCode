@@ -290,3 +290,16 @@ section {
 .pi {
   color: white;
 }
+.p-dropdown {
+    background: transparent;
+    border: 1px solid var(--primary);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    width: 100%;
+    height: 56px;
+}
+.p-inputtext {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}

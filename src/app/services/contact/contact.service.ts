@@ -9,7 +9,7 @@ import { DefaultResponse } from '../../models/http.model';
 })
 export class ContactService {
 
-  public CONTACT_URI: string = `${environment.URL_API}/mails/send-mail`;
+  public CONTACT_URI: string = `${environment.URL_API}/contacts`;
 
   constructor(
     private http: HttpClient

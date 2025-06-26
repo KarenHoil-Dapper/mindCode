@@ -17,7 +17,8 @@ constructor(
   async getCourses(){
     try {
       var response = await lastValueFrom(this.http.get<DefaultResponse>(this.CONTACT_URI));
-      return response.data;
+      console.log(response);
+      return response;
     } catch (error) {
       console.log(error);
       throw error
