@@ -25,6 +25,8 @@ import { ServicesComponent } from './components/home/services/services.component
 import { ContactComponent } from './components/home/contact/contact.component';
 import { AboutNewComponent } from './components/home/about-new/about-new.component';
 import { PrivacityComponent } from './pages/privacity/privacity.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { PrivacityComponent } from './pages/privacity/privacity.component';
     ContactComponent,
     AboutNewComponent,
     PrivacityComponent,
+    LoginComponent,
+    AuthFormComponent,
   ],
   imports: [
     BrowserModule,

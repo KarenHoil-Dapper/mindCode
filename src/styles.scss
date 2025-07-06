@@ -303,3 +303,16 @@ section {
     display: flex;
     align-items: center;
 }
+
+.p-password {
+    width: 100% !important;
+}
+.p-inputtext{
+  width: 100%;
+  height: 56px;
+}
+
+.p-inputtext:enabled:focus{
+  box-shadow: none;
+  border: none;
+}

@@ -1,0 +1,38 @@
+<section class="m-section">
+  <div class="container flex justify-content-center align-items-center h-full">
+    <div class="content">
+      <img src="/assets/images/logos/logo.png" alt="mindCode" class="w-15rem">
+      <h1 class="uppercase text-black-alpha-60 font-bold">Inicio de sesión</h1>
+      <div class="form">
+      <form [formGroup]="loginForm" (ngSubmit)="formValidation()">
+            <div class="inputs">
+              <div class="form-field"
+                [ngClass]="{'margin-error' : (loginForm.get('correo')?.errors && loginForm.get('correo')?.touched) || (invalid && loginForm.get('correo')?.untouched)}">
+                <input type="text" placeholder="correo" required (click)="resetValidations()"
+                  formControlName="correo" />
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="(loginForm.get('correo')?.hasError('required') && loginForm.get('correo')?.touched) || (invalid && loginForm.get('correo')?.untouched)">
+                  * Requerido
+                </p>
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="loginForm.get('correo')?.hasError('pattern') && loginForm.get('correo')?.touched">
+                  {{errorMessage('correo')}}
+                </p>
+            </div>
+            <div class="form-field"
+            [ngClass]="{'margin-error' : (loginForm.get('password')?.errors && loginForm.get('password')?.touched) || (invalid && loginForm.get('password')?.untouched)}">
+            <p-password formControlName="password" [toggleMask]="true" placeholder="Contraseña" (click)="resetValidations()" required [feedback]="false"/>
+            <p class="form-error" [@enterAnimation]
+                  *ngIf="(loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) || (invalid && loginForm.get('password')?.untouched)">
+                  * Requerido
+                </p>
+          </div>
+            <div class="button">
+              <button pButton pRipple class="btn-secondary" [loading]="isLoading">Iniciar sesión</button>
+            </div>
+          </div>
+          </form>
+          </div>
+    </div>
+  </div>
+</section>

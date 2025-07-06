@@ -23,6 +23,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BlockUIModule } from 'primeng/blockui';
+import { PasswordModule } from 'primeng/password';
 
 const primengComponents: any[] = [
   SidebarModule,
@@ -48,7 +49,8 @@ const primengComponents: any[] = [
   OverlayPanelModule,
   DialogModule,
   ProgressSpinnerModule,
-  BlockUIModule
+  BlockUIModule,
+  PasswordModule
 ]
 
 @NgModule({

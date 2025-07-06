@@ -49,7 +49,6 @@ export class ContactComponent {
     this.contactForm = this.formBuilder.group({
       nombre_completo: ['', Validators.required],
       telefono: ['', Validators.required],
-      Cursos_id: [''],
       correo: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
       terminos_aceptados: [false, Validators.requiredTrue],
       mensaje: [''],

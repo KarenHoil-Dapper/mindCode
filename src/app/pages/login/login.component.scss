@@ -1,0 +1,71 @@
+section{
+  background-image: url('/assets/images/login.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .content{
+    background-color: rgb(255 255 255 / 68%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 74px 60px;
+    border-radius: 10px;
+    width: 40rem;
+
+    @media(max-width: 576px) {
+      padding: 40px 20px;
+    }
+  }
+
+  .form {
+        width: 100%;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 26px;
+
+          .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+
+            .form-field {
+              position: relative;
+
+              .form-error {
+                color: #d60000;
+                font-size: 12px;
+                position: absolute;
+                top: 58px;
+              }
+
+              input {
+                font-size: 16px;
+                font-family: "Poppins Regular";
+                width: 100%;
+                border: 0;
+                font-weight: normal;
+                padding: 10px;
+                height: 56px;
+                outline: none;
+                border-radius: 5px;
+                background: white;
+                width: 100%;
+                line-height: 177.5%;
+              }
+            }
+          }
+
+          .button {
+            .btn-secondary{
+              width: 100%;
+            }
+          }
+        }
+      }
+}

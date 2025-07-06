@@ -1,6 +1,6 @@
 <p-toast position="bottom-left"></p-toast>
 <div class="wrapper" id="main-wrapper">
-    <app-nav-bar></app-nav-bar>
+    <app-nav-bar *ngIf="!notNav"></app-nav-bar>
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <app-footer *ngIf="!notNav"></app-footer>
 </div>

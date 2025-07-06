@@ -50,11 +50,9 @@
               </div>
               <div class="form-field"
                 [ngClass]="{'margin-error' : (contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)}">
-                <div>
                   <input type="text" placeholder="Teléfono" required (click)="resetValidations()"
                     formControlName="telefono" minlength="10" maxlength="10"
                     oninput="(value=value.replace(/\D+/g, ''))" />
-                </div>
                 <p class="form-error" [@enterAnimation]
                   *ngIf="(contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)">
                   {{errorMessage('telefono')}}
