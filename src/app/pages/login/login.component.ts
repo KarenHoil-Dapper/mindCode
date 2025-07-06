@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from '../../services/toast/toast.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +11,14 @@ import { ToastService } from '../../services/toast/toast.service';
 })
 export class LoginComponent {
   public loginForm!: FormGroup;
-    public isLoading: boolean = false;
+  public isLoading: boolean = false;
   public invalid: boolean = false;
   public invalidFlag: string = '';
- constructor(
+  constructor(
     private formBuilder: FormBuilder,
     private toastService: ToastService,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       correo: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
@@ -58,5 +62,14 @@ export class LoginComponent {
     }
   }
 
-  submit(data: any){}
+  submit(data: any) {
+    try {
+      this.authService.login();
+      this.router.navigate(['/dashboard']);
+    } catch (error) {
+      this.isLoading = false;
+      this.toastService.showError('Error al iniciar sesión', 'Por favor, inténtalo de nuevo más tarde.');
+      console.error('Error en el inicio de sesión:', error);
+    }
+  }
 }
