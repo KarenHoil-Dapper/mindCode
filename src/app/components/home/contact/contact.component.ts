@@ -132,7 +132,7 @@ export class ContactComponent {
         try {
           console.log('Enviando formulario de contacto', formValue);
           formValue.Cursos_id = this.courseSelected.id;
-          // let response = await this.contactService.sendContact(formValue);
+          let response = await this.contactService.sendContact(formValue);
           this.visible = true;
           this.contactForm.reset();
           this.isLoading = false;

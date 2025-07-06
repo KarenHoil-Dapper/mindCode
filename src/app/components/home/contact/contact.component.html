@@ -74,13 +74,9 @@
                 </p>
               </div>
               <div class="form-field"
-                [ngClass]="{'margin-error' : (contactForm.get('nombre')?.errors && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)}">
+                >
                 <p-dropdown [options]="courses" optionLabel="nombre" placeholder="Selecciona un curso"
                   [(ngModel)]="courseSelected" />
-                <p class="form-error" [@enterAnimation]
-                  *ngIf="(contactForm.get('nombre')?.hasError('required') && contactForm.get('nombre')?.touched) || (invalid && contactForm.get('nombre')?.untouched)">
-                  * Requerido
-                </p>
               </div>
               <div class="form-field">
                 <textarea placeholder="mensaje" formControlName="mensaje"></textarea>
