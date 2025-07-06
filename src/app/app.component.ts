@@ -13,6 +13,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
 export class AppComponent {
   title = 'mindCode';
   public notNav: boolean = false;
+  public notNavDash: boolean = false;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -26,6 +27,7 @@ export class AppComponent {
     });
     this.router.events.subscribe(() => {
       this.notNav = this.router.url.includes('/login') || this.router.url.includes('/dashboard');
+      this.notNavDash = this.router.url.includes('/dashboard');
     })
   }
 
