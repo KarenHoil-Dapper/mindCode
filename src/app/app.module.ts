@@ -27,6 +27,7 @@ import { AboutNewComponent } from './components/home/about-new/about-new.compone
 import { PrivacityComponent } from './pages/privacity/privacity.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AuthFormComponent } from './components/auth-form/auth-form.component';
     PrivacityComponent,
     LoginComponent,
     AuthFormComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

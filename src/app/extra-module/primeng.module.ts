@@ -24,6 +24,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BlockUIModule } from 'primeng/blockui';
 import { PasswordModule } from 'primeng/password';
+import { TagModule } from 'primeng/tag';
 
 const primengComponents: any[] = [
   SidebarModule,
@@ -50,7 +51,8 @@ const primengComponents: any[] = [
   DialogModule,
   ProgressSpinnerModule,
   BlockUIModule,
-  PasswordModule
+  PasswordModule,
+  TagModule
 ]
 
 @NgModule({

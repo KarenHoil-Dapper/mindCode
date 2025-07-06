@@ -1,6 +1,12 @@
 <p-toast position="bottom-left"></p-toast>
-<div class="wrapper" id="main-wrapper">
+<div id="main-wrapper" [ngClass]="{ 'not-nav': notNav, 'wrapper': !notNav }">
     <app-nav-bar *ngIf="!notNav"></app-nav-bar>
+    <nav *ngIf="notNav" class="bg-black-alpha-90">
+      <div class="container flex justify-content-between align-items-center py-4">
+      <img src="/assets/images/logos/isotipo.png" alt="" class="w-5rem">
+      <i class="pi pi-sign-out cursor-pointer text-2xl"></i>
+      </div>
+    </nav>
     <router-outlet></router-outlet>
     <app-footer *ngIf="!notNav"></app-footer>
 </div>
