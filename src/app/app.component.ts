@@ -15,6 +15,7 @@ export class AppComponent {
   title = 'mindCode';
   public notNav: boolean = false;
   public notNavDash: boolean = false;
+  public visible: boolean = false;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -46,6 +47,7 @@ export class AppComponent {
   logOut(){
     try {
       this.authService.logout();
+      this.visible = false; // Close the dialog
       this.router.navigate(['/login']);
     } catch (error) {
       console.error('Error during logout:', error);

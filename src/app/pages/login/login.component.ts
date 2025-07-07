@@ -62,16 +62,24 @@ export class LoginComponent {
     }
   }
 
-  submit( mail: string, password: string ) {
+  async submit(mail: string, password: string) {
   this.isLoading = true;
-    try {
-      const response = this.authService.login(mail, password);
-      this.isLoading = false;
-    this.router.navigate(['/dashboard']);
-  } catch (error) {
+
+  try {
+    const response = await this.authService.login(mail, password);
     this.isLoading = false;
-    this.toastService.showError('Error al iniciar sesión', 'Por favor, inténtalo de nuevo más tarde.');
+
+    this.router.navigate(['/dashboard']);
+  } catch (error: any) {
+    this.isLoading = false;
+    if (error?.error?.message === 'Usuario no encontrado' || error?.error?.message === 'Credenciales inválidas') {
+      this.toastService.showError('Credenciales incorrectas', 'Verifica tu correo y contraseña');
+    } else {
+      this.toastService.showError('Error al iniciar sesión', 'Por favor, inténtalo de nuevo más tarde.');
+    }
+
     console.error('Error en el inicio de sesión:', error);
   }
-  }
+}
+
 }
