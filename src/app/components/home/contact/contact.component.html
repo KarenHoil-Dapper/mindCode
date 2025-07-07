@@ -15,11 +15,6 @@
               <i class="pi pi-envelope" style="color:#5E27EF"></i>
               <a href="mailto:'22393143@utcancun.edu.mx" class="text">{{ '22393143@utcancun.edu.mx' }}</a>
             </div>
-            <!-- <div class="row">
-              <i class="pi pi-map-marker" style="color:#5E27EF"></i>
-              <a href="https://www.google.com/maps/place/Le%C3%B3n+de+los+Aldama,+Gto./@21.135242,-101.674004,11z/data=!4m6!3m5!1s0x842bbeffd6e6e721:0x606d95ec61a54327!8m2!3d21.1250077!4d-101.6859605!16zL20vMDFmc3J3?hl=es&entry=ttu&g_ep=EgoyMDI1MDMwMi4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank" class="text">León Gto</a>
-            </div> -->
           </div>
           <div class="maps">
             <h2>Redes sociales</h2>
@@ -50,9 +45,9 @@
               </div>
               <div class="form-field"
                 [ngClass]="{'margin-error' : (contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)}">
-                  <input type="text" placeholder="Teléfono" required (click)="resetValidations()"
-                    formControlName="telefono" minlength="10" maxlength="10"
-                    oninput="(value=value.replace(/\D+/g, ''))" />
+                <input type="text" placeholder="Teléfono" required (click)="resetValidations()"
+                  formControlName="telefono" minlength="10" maxlength="10"
+                  oninput="(value=value.replace(/\D+/g, ''))" />
                 <p class="form-error" [@enterAnimation]
                   *ngIf="(contactForm.get('telefono')?.errors && contactForm.get('telefono')?.touched) || (invalid && contactForm.get('telefono')?.untouched)">
                   {{errorMessage('telefono')}}
@@ -73,17 +68,24 @@
               </div>
               <div class="form-field">
                 <p-dropdown [options]="courses" optionLabel="nombre" placeholder="Selecciona un curso"
-                  [(ngModel)]="courseSelected" />
+                  formControlName="Cursos_id" required (click)="resetValidations()" />
+                <p class="form-error" [@enterAnimation]
+                  *ngIf="(contactForm.get('Cursos_id')?.errors && contactForm.get('Cursos_id')?.touched) || (invalid && contactForm.get('Cursos_id')?.untouched)">
+                  {{errorMessage('Cursos_id')}}
+                </p>
               </div>
               <div class="form-field">
                 <textarea placeholder="mensaje" formControlName="mensaje"></textarea>
               </div>
               <div class="form-field"
                 [ngClass]="{'margin-error' : (contactForm.get('terminos_aceptados')?.errors && contactForm.get('terminos_aceptados')?.touched) || (invalid && contactForm.get('terminos_aceptados')?.untouched)}">
-                <p-checkbox formControlName="terminos_aceptados" [binary]="true" inputId="binary" /> <label for="binary" class="ml-2">Acepta los <a routerLink="/terminos" style="color: var(--primary);">Terminos y condiciones</a></label>
+                <p-checkbox formControlName="terminos_aceptados" [binary]="true" inputId="binary" requiredTrue
+                  (click)="resetValidations()" />
+                <label for="binary" class="ml-2">Acepta los <a routerLink="/terminos"
+                    style="color: var(--primary);">Terminos y condiciones</a></label>
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="(contactForm.get('terminos_aceptados')?.hasError('required') && contactForm.get('terminos_aceptados')?.touched) || (invalid && contactForm.get('terminos_aceptados')?.untouched)">
-                  * Requerido
+                  *ngIf="(contactForm.get('terminos_aceptados')?.errors && contactForm.get('terminos_aceptados')?.touched) || (invalid && contactForm.get('terminos_aceptados')?.untouched)">
+                  {{errorMessage('terminos_aceptados')}}
                 </p>
               </div>
             </div>

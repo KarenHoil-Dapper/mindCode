@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { lastValueFrom } from 'rxjs';
@@ -24,4 +24,23 @@ export class ContactService {
       throw error
     }
   }
+
+  async getContact() {
+  try {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    const response = await lastValueFrom(
+      this.http.get<DefaultResponse>(this.CONTACT_URI, { headers })
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 }

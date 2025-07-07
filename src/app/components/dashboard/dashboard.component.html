@@ -15,7 +15,7 @@
     </div>
     </div> -->
     <div class="card">
-      <p-table #dt [value]="customers" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading"
+      <p-table #dt [value]="leads" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading"
         [paginator]="true" [globalFilterFields]="['nombre_completo', 'status']" [tableStyle]="{ 'min-width': '40rem' }">
         <ng-template pTemplate="caption">
           <div class="flex justify-content-between align-items-center">
@@ -34,19 +34,19 @@
             <th style="width:12%">Curso</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-leads>
           <tr>
             <td>
-              {{ customer.nombre_completo }}
+              {{ leads.nombre_completo }}
             </td>
             <td>
-              {{ customer.correo }}
+              {{ leads.correo }}
             </td>
             <!-- <td>
               <p-tag [severity]="getSeverity(customer.status)" [value]="customer.status" />
             </td> -->
             <td>
-              {{ customer.curso }}
+              {{ leads.curso }}
             </td>
           </tr>
         </ng-template>

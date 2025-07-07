@@ -4,3 +4,13 @@ export interface DefaultResponse {
   data: any,
   message: string
 }
+export interface LoginResponse {
+  token: string;
+  user: {
+    id: number;
+    nombre: string;
+    correo: string;
+    rol: string;
+  };
+}
+

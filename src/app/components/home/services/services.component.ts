@@ -66,16 +66,8 @@ export class ServicesComponent {
   ]
 
   onSlideChange() {
-    if (this.swiper2) {
-      this.activeIndex = this.swiper2.swiperRef.realIndex;
-    }
+  if (this.swiper2 && this.swiper2.swiperRef) {
+    this.activeIndex = this.swiper2.swiperRef.realIndex;
   }
-  goToPrevSlide() {
-
-  }
-
-  goToNextSlide() {
-
-
-  }
+}
 }

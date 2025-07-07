@@ -60,6 +60,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   providers: [
     MessageService,
     ConfirmationService,
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     [provideHttpClient(withFetch())],
     provideClientHydration(),
     ReCaptchaV3Service,

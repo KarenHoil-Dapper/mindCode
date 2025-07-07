@@ -36,8 +36,6 @@ export class ContactComponent {
   public invalidCaptcha: string = '';
   public visible: boolean = false;
   public courses: any;
-  public courseSelected:any;
-  public courseId:string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,6 +50,7 @@ export class ContactComponent {
       correo: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
       terminos_aceptados: [false, Validators.requiredTrue],
       mensaje: [''],
+      Cursos_id: ['', Validators.required]
     });
   }
 
@@ -66,6 +65,10 @@ export class ContactComponent {
     }
     if (this.contactForm.controls['telefono'].errors) {
       this.invalidFlag = 'invalid-phone';
+      this.invalid = true;
+    }
+    if (this.contactForm.controls['Cursos_id'].errors) {
+      this.invalidFlag = 'invalid-curses';
       this.invalid = true;
     }
     if (this.contactForm.controls['terminos_aceptados'].errors) {
@@ -92,6 +95,9 @@ export class ContactComponent {
   }
 
   errorMessage(formControl: string): any {
+    if (this.contactForm.get(formControl)?.hasError('requiredTrue')) {
+      return `* Debes de aceptar los terminos y condiciones.`;
+    }
     if (this.contactForm.get(formControl)?.hasError('required')) {
       return `* Requerido.`;
     } else {
@@ -103,23 +109,17 @@ export class ContactComponent {
     }
   }
 
-  async getCourses(){
-    try{
+  async getCourses() {
+    try {
       let response = await this.coursesService.getCourses();
       this.courses = response;
-      this.courseSelected = this.courses.find((space: any) => space.id);
-      console.log(response);
       return response;
-    }catch(error: any) {
+    } catch (error: any) {
       this.toastService.showError('Ha ocurrido un error inesperado al cargar los cursos');
       console.log(error);
       throw error;
     }
   }
-  onSelectCourse(event: any) {
-    console.log(event);
-  }
-
 
   async submit(formValue: any) {
     this.isLoading = true;
@@ -129,8 +129,8 @@ export class ContactComponent {
         formValue.token = token;
         this.isLoading = true;
         try {
+          formValue.Cursos_id = formValue.Cursos_id.id;
           console.log('Enviando formulario de contacto', formValue);
-          formValue.Cursos_id = this.courseSelected.id;
           let response = await this.contactService.sendContact(formValue);
           this.visible = true;
           this.contactForm.reset();
@@ -149,5 +149,4 @@ export class ContactComponent {
       console.log(error);
     }
   }
-
 }

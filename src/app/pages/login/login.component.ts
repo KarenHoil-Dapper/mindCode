@@ -21,13 +21,13 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
-      correo: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
+      mail: ['', [Validators.pattern('^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,6}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   formValidation() {
-    if (this.loginForm.controls['correo'].errors) {
+    if (this.loginForm.controls['mail'].errors) {
       this.invalidFlag = 'invalid-email';
       this.invalid = true;
     }
@@ -42,7 +42,8 @@ export class LoginComponent {
       }, 3000);
       return;
     }
-    this.submit(this.loginForm.value);
+    console.log('Form is valid:', this.loginForm.value.mail);
+    this.submit(this.loginForm.value.mail, this.loginForm.value.password);
   }
 
   resetValidations(flag?: string) {
@@ -62,14 +63,15 @@ export class LoginComponent {
     }
   }
 
-  submit(data: any) {
+  submit( mail: string, password: string ) {
     try {
-      this.authService.login();
-      this.router.navigate(['/dashboard']);
-    } catch (error) {
+      const response = this.authService.login(mail, password);
       this.isLoading = false;
-      this.toastService.showError('Error al iniciar sesión', 'Por favor, inténtalo de nuevo más tarde.');
-      console.error('Error en el inicio de sesión:', error);
-    }
+    this.router.navigate(['/dashboard']);
+  } catch (error) {
+    this.isLoading = false;
+    this.toastService.showError('Error al iniciar sesión', 'Por favor, inténtalo de nuevo más tarde.');
+    console.error('Error en el inicio de sesión:', error);
+  }
   }
 }

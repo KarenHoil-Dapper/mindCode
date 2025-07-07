@@ -14,7 +14,8 @@ export const environment = {
   },
   production: false,
   recaptcha: '6Lex-GkrAAAAAPt1eiV_tu7ShOmmuJ3Z8cUS-Gin',
-  URL_API: 'http://localhost:3000/api',
+  // URL_API: 'https://mindcode-back.onrender.com/api',
+   URL_API: 'localhost:3000/api',
 };
 
 /*

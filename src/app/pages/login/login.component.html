@@ -7,16 +7,16 @@
       <form [formGroup]="loginForm" (ngSubmit)="formValidation()">
             <div class="inputs">
               <div class="form-field"
-                [ngClass]="{'margin-error' : (loginForm.get('correo')?.errors && loginForm.get('correo')?.touched) || (invalid && loginForm.get('correo')?.untouched)}">
+                [ngClass]="{'margin-error' : (loginForm.get('mail')?.errors && loginForm.get('mail')?.touched) || (invalid && loginForm.get('mail')?.untouched)}">
                 <input type="text" placeholder="correo" required (click)="resetValidations()"
-                  formControlName="correo" />
+                  formControlName="mail" />
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="(loginForm.get('correo')?.hasError('required') && loginForm.get('correo')?.touched) || (invalid && loginForm.get('correo')?.untouched)">
+                  *ngIf="(loginForm.get('mail')?.hasError('required') && loginForm.get('mail')?.touched) || (invalid && loginForm.get('mail')?.untouched)">
                   * Requerido
                 </p>
                 <p class="form-error" [@enterAnimation]
-                  *ngIf="loginForm.get('correo')?.hasError('pattern') && loginForm.get('correo')?.touched">
-                  {{errorMessage('correo')}}
+                  *ngIf="loginForm.get('mail')?.hasError('pattern') && loginForm.get('mail')?.touched">
+                  {{errorMessage('mail')}}
                 </p>
             </div>
             <div class="form-field"

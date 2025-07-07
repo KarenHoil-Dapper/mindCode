@@ -10,5 +10,5 @@ export const environment = {
   },
   production: true,
   recaptcha: '6Lex-GkrAAAAAPt1eiV_tu7ShOmmuJ3Z8cUS-Gin',
-  URL_API: "http://localhost:8080/api",
+  URL_API: "https://mindcode-back.onrender.com/api",
 };
