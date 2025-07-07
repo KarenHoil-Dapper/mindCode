@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ContactService } from '../../services/contact/contact.service';
-import { Toast } from 'primeng/toast';
+import { DatePipe } from '@angular/common';
 import { ToastService } from '../../services/toast/toast.service';
+import { CoursesService } from '../../services/courses/courses.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,58 +13,60 @@ import { ToastService } from '../../services/toast/toast.service';
 export class DashboardComponent {
   public loading: boolean = false;
   public leads: any;
- public customers: any[] = [
-  {
-    nombre_completo: 'Karen López',
-    correo: 'karen@mail.com',
-    status: 'Activo',
-    curso: 'Angular Avanzado'
-  },
-  {
-    nombre_completo: 'Juan Ross',
-    correo: 'ross@mail.com',
-    status: 'Inactivo',
-    curso: 'JavaScript Avanzado'
-  },
-  {
-    nombre_completo: 'Efraín',
-    correo: 'efrain@mail.com',
-    status: 'Completo',
-    curso: 'flutter'
-  }
- ]
+  public courses: any;
+  public course:string = '';
 
  constructor(
   private contactsService: ContactService,
-  private toasService: ToastService
+  private toasService: ToastService,
+  private coursesService: CoursesService,
+  private toastService: ToastService,
+  private datePipe: DatePipe
  ) {}
 
 ngOnInit() {
-  this.getLeads();
+  this.initData();
 }
 
- get activeLeadsCount(): number {
-  return this.customers.filter(c => c.status === 'Activo').length;
+async initData() {
+  await this.getCourses();
+  await this.getLeads();
 }
 
-get inactiveLeadsCount(): number {
-  return this.customers.filter(c => c.status === 'Inactivo').length;
+
+
+formatFecha(fecha: string): string | null {
+  return this.datePipe.transform(fecha, 'dd/MM/yyyy HH:mm');
 }
 
-get completeLeadsCount(): number {
-  return this.customers.filter(c => c.status === 'Completo').length;
+ async getCourses() {
+  try {
+    const response = await this.coursesService.getCourses();
+    this.courses = response.data || response; // depende cómo venga
+  } catch (error: any) {
+    this.toastService.showError('Error', 'No se pudieron cargar los cursos');
+    console.log(error);
+  }
 }
 
-getLeads(){
-  try{
-    const response = this.contactsService.getContact();
-    console.log('Leads obtenidos:', response);
-    this.leads = response;
-  }catch(error){
+
+async getLeads() {
+  try {
+    const response = await this.contactsService.getContact();
+    this.leads = (response.data || response).map((lead: any) => {
+      const curso = this.courses.find((c: any) => c.id === lead.Cursos_id);
+      return {
+        ...lead,
+        nombre_curso: curso ? curso.nombre : 'Curso desconocido'
+      };
+    });
+  } catch (error) {
     this.toasService.showError('Error', 'No se pudieron obtener los leads');
     console.error('Error fetching leads:', error);
   }
 }
+
+
 
   getSeverity(status: string) {
         switch (status) {

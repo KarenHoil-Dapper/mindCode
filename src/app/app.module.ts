@@ -28,6 +28,7 @@ import { PrivacityComponent } from './pages/privacity/privacity.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -60,7 +61,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   providers: [
     MessageService,
     ConfirmationService,
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DatePipe,
     [provideHttpClient(withFetch())],
     provideClientHydration(),
     ReCaptchaV3Service,

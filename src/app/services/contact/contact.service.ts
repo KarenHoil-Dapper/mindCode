@@ -37,7 +37,7 @@ export class ContactService {
       this.http.get<DefaultResponse>(this.CONTACT_URI, { headers })
     );
 
-    return response.data;
+    return response;
   } catch (error) {
     console.log(error);
     throw error;

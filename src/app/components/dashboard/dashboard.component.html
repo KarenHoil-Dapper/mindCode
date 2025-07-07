@@ -28,6 +28,7 @@
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
+            <th style="width:22%">Fecha</th>
             <th style="width:22%">Nombre</th>
             <th style="width:22%">Correo</th>
             <!-- <th style="width:22%">Status</th> -->
@@ -36,6 +37,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-leads>
           <tr>
+            <td>
+              {{ leads.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+            </td>
             <td>
               {{ leads.nombre_completo }}
             </td>
@@ -46,7 +50,7 @@
               <p-tag [severity]="getSeverity(customer.status)" [value]="customer.status" />
             </td> -->
             <td>
-              {{ leads.curso }}
+              {{ leads.nombre_curso }}
             </td>
           </tr>
         </ng-template>

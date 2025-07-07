@@ -54,7 +54,7 @@ export class NavBarComponent {
     this.router.events.subscribe(async (event: any) => {
       if (event instanceof NavigationEnd) {
         this.actualRoute = event.url;
-        console.log("Actual Route: ", this.actualRoute);
+        // console.log("Actual Route: ", this.actualRoute);
         if(this.actualRoute == "/inicio"){
           this.actualRoute = "/inicio";
         }

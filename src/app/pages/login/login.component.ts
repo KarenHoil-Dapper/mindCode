@@ -42,7 +42,6 @@ export class LoginComponent {
       }, 3000);
       return;
     }
-    console.log('Form is valid:', this.loginForm.value.mail);
     this.submit(this.loginForm.value.mail, this.loginForm.value.password);
   }
 
@@ -64,6 +63,7 @@ export class LoginComponent {
   }
 
   submit( mail: string, password: string ) {
+  this.isLoading = true;
     try {
       const response = this.authService.login(mail, password);
       this.isLoading = false;

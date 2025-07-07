@@ -9,6 +9,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class AuthService {
   public CONTACT_URI: string = `${environment.URL_API}/auth/login`;
+  public CONTACT_URI_LOGOUT: string = `${environment.URL_API}/auth/logout`;
 
   constructor(private http: HttpClient) { }
 
@@ -31,8 +32,19 @@ export class AuthService {
   }
 
   logout(): void {
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('user');
+    try{
+      const token = localStorage.getItem('token');
+      if (token) {
+        localStorage.removeItem('token');
+    localStorage.removeItem('user');
+        lastValueFrom(this.http.post<DefaultResponse>(this.CONTACT_URI_LOGOUT, {}, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        }));
+      }
+    }catch (error) {
+      console.error('Error during logout:', error);
+      throw error;
+    }
   }
 
   isAuthenticated(): boolean {

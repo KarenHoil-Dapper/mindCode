@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import * as AOS from 'aos';
 import SwiperCore, { Autoplay, Pagination, Navigation, EffectFade } from 'swiper';
+import { AuthService } from './services/auth/auth.service';
 SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade]);
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -39,5 +41,14 @@ export class AppComponent {
         });
       }
     }, 100);
+  }
+
+  logOut(){
+    try {
+      this.authService.logout();
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
 }
