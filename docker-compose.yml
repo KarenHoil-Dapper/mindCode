@@ -1,8 +1,7 @@
 services:
   frontend:
-    build: ./mindCode
+    build: .
     container_name: frontend_app
     restart: always
     ports:
       - "3147:80"
-
