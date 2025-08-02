@@ -8,7 +8,7 @@ export const environment = {
     appId: "1:541645742324:web:447242d2be31064893fea1",
     measurementId: "G-VFQHFRBDJB"
   },
-  production: true,
+  production: false,
   recaptcha: '6Lex-GkrAAAAAPt1eiV_tu7ShOmmuJ3Z8cUS-Gin',
-  URL_API: "https://mindcode-back.onrender.com/api",
+  URL_API: "http://localhost:3143/api",
 };
